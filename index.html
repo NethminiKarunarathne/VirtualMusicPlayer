@@ -1,18 +1,27 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Unity WebGL Player | WasanthayeAga3</title>
-    <meta name="description" content="">
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
+    <meta name="description" content="" />
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+    <link rel="stylesheet" href="TemplateData/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
     <div id="unity-container">
-      <div id="unity-canvas-container" style="width: 100%; height: 100%;">
-        <canvas id="unity-canvas" style="width: 100%; height: 100%;"></canvas>
+      <div id="unity-canvas-container" style="width: 100%; height: 100%">
+        <canvas id="unity-canvas" style="width: 100%; height: 100%"></canvas>
       </div>
       <div id="unity-loading-bar">
         <div id="unity-logo"></div>
@@ -23,11 +32,67 @@
       <div id="unity-footer">
         <!-- <div id="unity-webgl-logo"></div> -->
         <!-- <button id="entervr" value="Enter VR" disabled>VR</button> -->
-        <button id="enterar" value="Enter AR" disabled>Start-></button>
+        <button class="btn" id="enterar" value="Enter AR" disabled>
+          Start->
+        </button>
         <!-- <div id="unity-webxr-link">Using <a href="https://github.com/De-Panther/unity-webxr-export" target="_blank" title="WebXR Export">WebXR Export</a></div> -->
         <!-- <div id="unity-build-title">WasanthayeAga</div> -->
       </div>
+      <footer id="footer" class="footer-1">
+        <div class="main-footer widgets-dark typo-light">
+          <div class="container">
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="widget no-box">
+                  <img
+                    src="./TemplateData/unity-logo-dark.png"
+                    alt=""
+                    width="154"
+                    height="44"
+                  />
+                  <span class="widget-title"></span>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="widget subscribe no-box">
+                  <h5 class="widget-title">
+                    University of Peradeniya<span></span>
+                  </h5>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="widget no-box">
+                  <h5 class="widget-title">
+                    Faculty of Engineering<span></span>
+                  </h5>
+                </div>
+              </div>
+
+              <div class="col-xs-12 col-sm-6 col-md-3">
+                <div class="widget no-box">
+                  <h5 class="widget-title">Batch E20<span></span></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-copyright">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <p>
+                  Copyright Nethmini_Karunarathne © 2023. All rights
+                  reserved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
+
     <script>
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/hey.loader.js";
@@ -48,7 +113,6 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var unityInstance = null;
-      
 
       loadingBar.style.display = "block";
 
@@ -57,37 +121,61 @@
       script.onload = () => {
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
-        }).then((instance) => {
-          unityInstance = instance;
-          loadingBar.style.display = "none";
-          if (fullscreenButton)
-          {
-            fullscreenButton.onclick = () => {
-              unityInstance.SetFullscreen(1);
-            };
-          }
-        }).catch((message) => {
-          alert(message);
-        });
+        })
+          .then((instance) => {
+            unityInstance = instance;
+            loadingBar.style.display = "none";
+            if (fullscreenButton) {
+              fullscreenButton.onclick = () => {
+                unityInstance.SetFullscreen(1);
+              };
+            }
+          })
+          .catch((message) => {
+            alert(message);
+          });
       };
       document.body.appendChild(script);
 
-      let enterARButton = document.getElementById('enterar');
+      let enterARButton = document.getElementById("enterar");
       // let enterVRButton = document.getElementById('entervr');
 
-      document.addEventListener('onARSupportedCheck', function (event) {
-        enterARButton.disabled = !event.detail.supported;
-      }, false);
+      document.addEventListener(
+        "onARSupportedCheck",
+        function (event) {
+          enterARButton.disabled = !event.detail.supported;
+        },
+        false
+      );
       // document.addEventListener('onVRSupportedCheck', function (event) {
       //   enterVRButton.disabled = !event.detail.supported;
       // }, false);
 
-      enterARButton.addEventListener('click', function (event) {
-        unityInstance.Module.WebXR.toggleAR();
-      }, false);
+      enterARButton.addEventListener(
+        "click",
+        function (event) {
+          unityInstance.Module.WebXR.toggleAR();
+        },
+        false
+      );
       // enterVRButton.addEventListener('click', function (event) {
       //   unityInstance.Module.WebXR.toggleVR();
       // }, false);
     </script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
